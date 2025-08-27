@@ -1,8 +1,6 @@
 *{
-    font-family: 'Press Start 2P', cursive;
-  line-height: 1.5;
-  font-weight: 400;
-
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.5; font-weight: 400;
 }
 
 /* Navbar */
@@ -58,6 +56,9 @@
   text-align: center;
   color: rgb(255, 255, 255);
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  display: inline-flex;
 }
 
 .login input,.register input {
@@ -85,13 +86,14 @@
 
 /* Dashboard, Quiz, Score pages */
 .content > div {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
   color: white;
   width: 500px;
 }
+
 
 /* Dashboard styling */
 .dashboard {
@@ -191,4 +193,30 @@
   font-weight: 500;
   cursor: pointer;
   transition: transform 0.2s, background 0.3
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: #333;
+  border-radius: 12px;
+  /* padding: 8px 12px; */
+  margin: 8px 0px;
+}
+
+.input-box i {
+  margin-right: 10px;  
+  margin-left :10px;
+  color: white;
+  font-size: 30px;
+  opacity: 20%;
+}
+
+.input-box input {  
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 14px;
 }
