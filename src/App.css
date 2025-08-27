@@ -1,0 +1,194 @@
+*{
+    font-family: 'Press Start 2P', cursive;
+  line-height: 1.5;
+  font-weight: 400;
+
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #1a1a1a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+}
+
+.navbar .nav-links button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #646cff;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar .nav-links button:hover {
+  background: #535bf2;
+}
+
+/* Content area (below navbar) */
+.content {
+  margin-top: 60px; /* push below navbar */
+  min-height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("backgrounds/bg6.gif") no-repeat center center;
+  background-size: cover;
+}
+
+/* Auth boxes */
+.login,.register {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  width: 300px;
+}
+
+.login input,.register input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+}
+
+.login button,.register button {
+  width: 100%;
+  margin-top: 12px;
+  background: #646cff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login button:hover,.register button:hover {
+  background: #535bf2;
+}
+
+/* Dashboard, Quiz, Score pages */
+.content > div {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  width: 500px;
+}
+
+/* Dashboard styling */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 20px;
+  text-align: center;
+}
+
+.dashboard h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.dashboard h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.question-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.question-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.question-form input:focus {
+  border: 1px solid #646cff;
+}
+
+.question-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #646cff, #535bf2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.question-form button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #747bff, #646cff);
+}
+
+
+.Quizsolve{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 20px;
+  text-align: center;
+}
+.Quizsolve p{
+ color: rgb(161, 27, 195);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.Quizsolve button{
+  padding: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #646cff, #535bf2);
+  color: rgb(247, 247, 247);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3
+}
+.score button{
+  padding: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #646cff, #535bf2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3
+}
