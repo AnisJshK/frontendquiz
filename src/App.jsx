@@ -102,19 +102,26 @@ function App() {
         {page === "login" && (
           <div className="login">
             <h2>Login</h2>
-            <input
+            <div className="input-box">
+              <i class="fa-regular fa-2x fa-circle-user"></i>
+              <input
               type="text"
               placeholder="Enter ID"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
             />
+            </div>
+            
             <br />
+            <div className="input-box">
+              <i class="fa-solid fa-2x fa-lock"></i>
             <input
               type="password"
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+              />
+             </div>
             <br />
             <button onClick={handleLogin}>Login</button>
             <p>
@@ -129,19 +136,25 @@ function App() {
         {page === "register" && (
           <div className="register">
             <h2>Register</h2>
+            <div className="input-box">
+            <i class="fa-regular fa-2x fa-circle-user"></i>
             <input
               type="text"
               placeholder="Choose ID"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
             />
+            </div>
             <br />
+            <div className="input-box">
+            <i class="fa-solid fa-2x fa-lock"></i>
             <input
               type="password"
               placeholder="Choose Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+              />
+            </div>
             <br />
             <button onClick={handleRegister}>Register</button>
             <p>
