@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
@@ -10,10 +10,10 @@ function App() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Store registered users (in-memory for now)
+  // Store registered users (now persisted in localStorage)
   const [users, setUsers] = useState([]);
 
-  // Quiz questions
+  // Quiz questions (persisted in localStorage)
   const [questions, setQuestions] = useState([
     { question: "What is 2 + 2?", options: ["4", "5"], correct: "4" },
   ]);
@@ -23,6 +23,15 @@ function App() {
   const [newOption1, setNewOption1] = useState("");
   const [newOption2, setNewOption2] = useState("");
   const [newCorrect, setNewCorrect] = useState("");
+
+  // 🔹 Load data from localStorage when app loads
+  useEffect(() => {
+    const savedUsers = localStorage.getItem("users");
+    if (savedUsers) setUsers(JSON.parse(savedUsers));
+
+    const savedQuestions = localStorage.getItem("questions");
+    if (savedQuestions) setQuestions(JSON.parse(savedQuestions));
+  }, []);
 
   // Handle Login
   const handleLogin = () => {
@@ -50,7 +59,12 @@ function App() {
       return;
     }
 
-    setUsers([...users, { id: userId, password }]);
+    const newUsers = [...users, { id: userId, password }];
+    setUsers(newUsers);
+
+    // ✅ Save to localStorage
+    localStorage.setItem("users", JSON.stringify(newUsers));
+
     setError("");
     alert("Registration successful! Please login.");
     setPage("login");
@@ -64,14 +78,19 @@ function App() {
       return;
     }
 
-    setQuestions([
+    const newQuestions = [
       ...questions,
       {
         question: newQuestion,
         options: [newOption1, newOption2],
         correct: newCorrect,
       },
-    ]);
+    ];
+
+    setQuestions(newQuestions);
+
+    // ✅ Save to localStorage
+    localStorage.setItem("questions", JSON.stringify(newQuestions));
 
     // Clear input fields
     setNewQuestion("");
@@ -103,25 +122,25 @@ function App() {
           <div className="login">
             <h2>Login</h2>
             <div className="input-box">
-              <i class="fa-regular fa-2x fa-circle-user"></i>
+              <i className="fa-regular fa-2x fa-circle-user"></i>
               <input
-              type="text"
-              placeholder="Enter ID"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-            />
+                type="text"
+                placeholder="Enter ID"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+              />
             </div>
-            
+
             <br />
             <div className="input-box">
-              <i class="fa-solid fa-2x fa-lock"></i>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              <i className="fa-solid fa-2x fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Enter Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
-             </div>
+            </div>
             <br />
             <button onClick={handleLogin}>Login</button>
             <p>
@@ -137,22 +156,22 @@ function App() {
           <div className="register">
             <h2>Register</h2>
             <div className="input-box">
-            <i class="fa-regular fa-2x fa-circle-user"></i>
-            <input
-              type="text"
-              placeholder="Choose ID"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-            />
+              <i className="fa-regular fa-2x fa-circle-user"></i>
+              <input
+                type="text"
+                placeholder="Choose ID"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+              />
             </div>
             <br />
             <div className="input-box">
-            <i class="fa-solid fa-2x fa-lock"></i>
-            <input
-              type="password"
-              placeholder="Choose Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              <i className="fa-solid fa-2x fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Choose Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <br />
@@ -167,39 +186,38 @@ function App() {
 
         {/* 🔹 Dashboard */}
         {page === "dashboard" && (
-  <div className="dashboard">
-    <h2>Dashboard</h2>
-    <h3>Add a Question</h3>
-    <form className="question-form" onSubmit={handleAddQuestion}>
-      <input
-        type="text"
-        placeholder="Question"
-        value={newQuestion}
-        onChange={(e) => setNewQuestion(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Option 1"
-        value={newOption1}
-        onChange={(e) => setNewOption1(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Option 2"
-        value={newOption2}
-        onChange={(e) => setNewOption2(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Correct Answer"
-        value={newCorrect}
-        onChange={(e) => setNewCorrect(e.target.value)}
-      />
-      <button type="submit">Add Question</button>
-    </form>
-  </div>
-  )}
-
+          <div className="dashboard">
+            <h2>Dashboard</h2>
+            <h3>Add a Question</h3>
+            <form className="question-form" onSubmit={handleAddQuestion}>
+              <input
+                type="text"
+                placeholder="Question"
+                value={newQuestion}
+                onChange={(e) => setNewQuestion(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Option 1"
+                value={newOption1}
+                onChange={(e) => setNewOption1(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Option 2"
+                value={newOption2}
+                onChange={(e) => setNewOption2(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Correct Answer"
+                value={newCorrect}
+                onChange={(e) => setNewCorrect(e.target.value)}
+              />
+              <button type="submit">Add Question</button>
+            </form>
+          </div>
+        )}
 
         {/* 🔹 Quiz */}
         {page === "quiz" && (
